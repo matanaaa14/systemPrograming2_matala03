@@ -1,0 +1,75 @@
+#ifndef FRACTION_HPP
+#define FRACTION_HPP
+#include <iostream>
+
+using namespace std;
+
+namespace ariel{
+
+}
+class Fraction{
+    public:
+    int numerator,denominator;
+    Fraction operator+(const Fraction& other);
+    friend Fraction operator+(const double d, const Fraction& f);
+    Fraction operator+(const double num);
+    friend Fraction operator-(const Fraction& other);
+    Fraction operator-(const Fraction& other);
+    Fraction operator-(int num);
+    Fraction operator*(const Fraction& other);
+    friend Fraction operator*(double dob, const Fraction& frac);
+    Fraction operator/(const Fraction& other);
+    bool operator==(const Fraction& other);
+    bool operator==(const double);
+    bool operator<(const Fraction& other);
+    bool operator<=(const Fraction& other);
+    bool operator>(const Fraction& other);
+    bool operator>(double);
+    bool operator>=(const Fraction& other);
+    Fraction& operator++();
+    Fraction& operator++(int);
+    Fraction& operator--();
+    Fraction& operator--(int);
+    Fraction operator>>(const Fraction& other);
+    friend ostream& operator<<(ostream& os,const Fraction& other);
+    friend ostream& operator<<(const Fraction& other, ostream& os);
+    Fraction(int,int);
+};
+
+
+
+
+#endif
+
+
+///////////////////////////////
+
+
+#include "Fraction.hpp"
+#include <iostream>
+using namespace std;
+
+    Fraction operator+(const Fraction& other);
+    friend Fraction operator+(const double d, const Fraction& f);
+    Fraction operator+(const double num);
+    friend Fraction operator-(const Fraction& other);
+    Fraction operator-(const Fraction& other);
+    Fraction operator-(int num);
+    Fraction operator*(const Fraction& other);
+    friend Fraction operator*(double dob, const Fraction& frac);
+    Fraction operator/(const Fraction& other);
+    bool operator==(const Fraction& other);
+    bool operator==(const double);
+    bool operator<(const Fraction& other);
+    bool operator<=(const Fraction& other);
+    bool operator>(const Fraction& other);
+    bool operator>(double);
+    bool operator>=(const Fraction& other);
+    Fraction& operator++();
+    Fraction& operator++(int);
+    Fraction& operator--();
+    Fraction& operator--(int);
+    Fraction operator>>(const Fraction& other);
+    friend ostream& operator<<(ostream& os,const Fraction& other);
+    friend ostream& operator<<(const Fraction& other, ostream& os);
+    Fraction(int,int);
