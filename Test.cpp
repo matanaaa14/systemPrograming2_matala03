@@ -57,3 +57,33 @@ TEST_CASE("test --"){
     CHECK(f4 == f5);
 }
 
+TEST_CASE("test =="){
+    Fraction f1(1,4);
+    Fraction f2(1,4);
+    Fraction f3(1,2);
+    bool check1 = false;
+    if(f1 == f2){
+        check1 = true;
+    }
+    bool check2 = false;
+    if(f3 < f2){
+        check2 = true;
+    }
+    bool check3 = false;
+    if(f3 > f2){
+        check3 = true;
+    }
+    bool check4 = false;
+    if(f3 <= f2){
+        check4 = true;
+    }
+    bool check5 = false;
+    if(f3 >= f2){
+        check5 = true;
+    }
+    CHECK(check1 == true);
+    CHECK(check2 == false);
+    CHECK(check3 == true);
+    CHECK(check4 == false);
+    CHECK(check5 == true);
+}
