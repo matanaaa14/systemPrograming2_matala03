@@ -1,6 +1,7 @@
 #include "doctest.h"
 #include <iostream>
 #include "sources/Fraction.hpp"
+//https://github.com/cpp-exercises/Fraction_a
 
 TEST_CASE("test constructor"){
     Fraction f(1,2);
@@ -11,10 +12,15 @@ TEST_CASE("test +"){
     Fraction f1(1,4);
     Fraction f2(2,4);
     Fraction f3(3,4);
+    Fraction f4(4,1);
+    Fraction f2_25(9,4);
     CHECK(f1 + f2 == f3);
-    CHECK(f1 + 2 == 2.25);
-    CHECK(3.75 + f1 == 4);
+    CHECK(f1 + 2 == f2_25);
+    CHECK(2.5 + f2 == 3.0);
+    CHECK(3.75 + f1 == f4);
+    CHECK(f4 == 3.75 + f1);
 }
+
 
 TEST_CASE("test -"){
     Fraction f1(1,4);
@@ -60,30 +66,44 @@ TEST_CASE("test --"){
 TEST_CASE("test =="){
     Fraction f1(1,4);
     Fraction f2(1,4);
-    Fraction f3(1,2);
     bool check1 = false;
     if(f1 == f2){
         check1 = true;
     }
-    bool check2 = false;
+}
+TEST_CASE("test <"){
+    Fraction f2(1,4);
+    Fraction f3(1,2);
+    bool check = false;
     if(f3 < f2){
-        check2 = true;
+        check = true;
     }
-    bool check3 = false;
+    CHECK(check == false);
+}
+TEST_CASE("test >"){
+    Fraction f2(1,4);
+    Fraction f3(1,2);
+    bool check = false;
     if(f3 > f2){
-        check3 = true;
+        check = true;
     }
-    bool check4 = false;
+    CHECK(check == true);
+}
+TEST_CASE("test <="){
+    Fraction f2(1,4);
+    Fraction f3(1,2);
+    bool check = false;
     if(f3 <= f2){
-        check4 = true;
+        check = true;
     }
-    bool check5 = false;
+    CHECK(check == false);
+}
+TEST_CASE("test >="){
+    Fraction f2(1,4);
+    Fraction f3(1,2);
+    bool check = false;
     if(f3 >= f2){
-        check5 = true;
+        check = true;
     }
-    CHECK(check1 == true);
-    CHECK(check2 == false);
-    CHECK(check3 == true);
-    CHECK(check4 == false);
-    CHECK(check5 == true);
+    CHECK(check == true);
 }
