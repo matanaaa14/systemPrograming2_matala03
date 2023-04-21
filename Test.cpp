@@ -4,6 +4,7 @@
 //https://github.com/cpp-exercises/Fraction_a
 
 TEST_CASE("test constructor"){
+    CHECK_NOTHROW(Fraction f2(1,2));
     Fraction f(1,2);
     CHECK(f.denominator == 2);
     CHECK(f.numerator == 1);
