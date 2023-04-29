@@ -62,16 +62,28 @@ namespace ariel{}
 
     
     Fraction Fraction::operator/(const Fraction& other){
-      Fraction f(this->numerator * other.denominator,this->denominator * other.numerator);
-      return f;  }
+      if(other.numerator == 0){
+        perror("division by 0 is illegal\n");
+        exit(1);
+      }
+      Fraction result(this->numerator * other.denominator,this->denominator * other.numerator);
+      return result;  }
 
     Fraction Fraction::operator/(float num){
+      if(num == 0){
+        perror("division by 0 is illegal\n");
+        exit(1);
+      }
       Fraction temp = convert(num);
       Fraction result(this->numerator * temp.denominator , this->denominator *temp.numerator) ;
       return result;   }
     
 
     Fraction operator/(float num,const Fraction& fraction){
+      if(fraction.numerator == 0){
+        perror("division by 0 is illegal\n");
+        exit(1);
+      }
       Fraction nothing(1,1);// only to be able to use convert function
       Fraction temp = nothing.convert(num);
       //Fraction result(fraction.numerator * temp.denominator ,fraction.denominator *temp.numerator) ;
@@ -84,36 +96,58 @@ namespace ariel{}
       return true;
     }
     bool operator==(float num, const Fraction& fraction){
-      return false;
+      Fraction nothing(1,1);// only to be able to use convert function
+      Fraction temp = nothing.convert(num);
+      return fraction == temp;
     }
     bool operator==(const Fraction& fraction,float num){
-      return false;
+      return num == fraction;
     }
 
     bool Fraction::operator<(const Fraction& other){
+      Fraction stam1 = other;
+      Fraction temp = stam1 - *this;
+      cout << "check: " << temp.numerator << "/" << temp.denominator << endl;
+      if((temp.numerator > 0 & temp.denominator > 0)||(temp.numerator < 0 & temp.denominator < 0) )
+          return true;
       return false;
     }
-    bool operator<(const Fraction& fraction1, const Fraction& fraction2){
-      return false;
+    bool operator<(float num, const Fraction& fraction){
+      Fraction nothing(1,1);
+      Fraction temp = nothing.convert(num);
+      return temp < fraction; 
     }
     
-    bool operator<(const Fraction& f, double num){
-      return false;
+    bool operator<(const Fraction& fraction, float num){
+      Fraction fraction2 =fraction;
+      Fraction nothing(1,1);
+      Fraction temp = nothing.convert(num);
+      return fraction2 < temp; 
     }
     
     bool Fraction::operator<=(const Fraction& other){
+      Fraction temp = *this;
+      if(temp < other || temp == other)
+        return true;
       return false;
     }
-    bool operator<=(const Fraction& fraction1, const Fraction& fraction2){
+    bool operator<=(float num ,const Fraction& fraction){
+      Fraction temp1 = fraction;
+      Fraction temp2 = temp1.convert(num);
+      if(temp1 < temp2 || temp1 == temp2)
+        return true;
       return false;
     }
     
-    bool operator<=(const Fraction& f, double num){
-      return false;
+    bool operator<=(const Fraction& fraction, float num){
+      Fraction nothing(1,1);
+      Fraction temp = nothing.convert(num);
+      Fraction temp2 = fraction;
+      return temp2 <= temp;
     }
     
     bool Fraction::operator>(const Fraction& other){
-      return false;
+      return !(*this < other);
     }
     
     bool Fraction::operator>(float num){
@@ -189,9 +223,9 @@ namespace ariel{}
     }
     Fraction Fraction::convert(float num){
       int Int = 0;
-      if(num < 0.001)
-        return Fraction(0,0);
-      if(num > 1)
+      if(num < 0.001 && num > -0.001)
+        return Fraction(0,1);
+      if(num > 1 || num < -1)
         Int = (int) num;
       int temp = (int)(num * 1000);
       temp = temp % 1000;

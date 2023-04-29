@@ -18,14 +18,23 @@ using namespace ariel;
 
 int main() {
     Fraction f1(2,3);
-    Fraction f2(1,3);
-    Fraction f3(1,2);
+    Fraction f2(1,5);
+    Fraction f3(2,10);
     Fraction temp1 =f1 * f3;
     Fraction temp2 =f3 * 0.25;
     Fraction temp3 = 3 * f3;
-    cout << temp1.numerator <<"/" << temp1.denominator <<endl;
-    cout << temp2.numerator <<"/" << temp2.denominator <<endl;
-    cout << temp3.numerator <<"/" << temp3.denominator <<endl;
+    if(0.2 <= f2){
+        cout << "good1" << endl;
+    }
+    if(f2 <= 0.2){
+        cout << "good2" << endl;
+    }
+    if(f3 <= f2){
+        cout << "good3" << endl;
+    }    
+    //cout << temp1.numerator <<"/" << temp1.denominator <<endl;
+    //cout << temp2.numerator <<"/" << temp2.denominator <<endl;
+    //cout << temp3.numerator <<"/" << temp3.denominator <<endl;
 
     /*/
     Fraction a(5,3), b(14,21);
