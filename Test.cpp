@@ -71,6 +71,9 @@ TEST_CASE("test =="){
     if(f1 == f2){
         check1 = true;
     }
+    CHECK(check1 == true);
+    CHECK(f1 == 0.25);
+    CHECK(0.25 == f2);
 }
 TEST_CASE("test <"){
     Fraction f2(1,4);
